@@ -268,7 +268,7 @@ public class PathUtil {
         else if (!pattern1.contains("{") && match(pattern1, pattern2)) {
             return pattern2;
         }
-        else if (!pattern1.endsWith("*")) {
+        else if (pattern1.endsWith("/*")) {
             if (pattern2.startsWith("/")) {
                 // /hotels/* + /booking -> /hotels/booking
                 return pattern1.substring(0, pattern1.length() - 1) + pattern2.substring(1);
@@ -280,11 +280,11 @@ public class PathUtil {
         }
         else {
             if (pattern2.startsWith("/")) {
-                // /hotels/* + booking -> /hotels/*booking
+                // /hotels/ + booking -> /hotels/*booking
                 return pattern1 + pattern2.substring(0, pattern2.length() - 1);
             }
             else {
-                // /hotels/* + booking -> /hotels/*booking
+                // /hotels/ + booking -> /hotels/*booking
                 return pattern1 + pattern2;
             }
         }

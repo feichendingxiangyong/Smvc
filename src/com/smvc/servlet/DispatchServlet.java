@@ -84,7 +84,6 @@ public class DispatchServlet extends HttpServlet {
         //404 no handler mapped
         if (classMappingInfo == null) {
             Logger.getLogger(this.getClass()).error("request uri [" + requestUrl + "] did not match any controller.");
-            //pageNotFound(request, response);
             response.sendError(404);
             return;
         }
@@ -114,7 +113,8 @@ public class DispatchServlet extends HttpServlet {
         if (targetMethod == null)
         {
             Logger.getLogger(this.getClass()).error("request uri [" + requestUrl + "] did not match any controller.");
-            pageNotFound(request, response);
+            response.sendError(404);
+            
             return;
         }
         
