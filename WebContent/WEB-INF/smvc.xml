@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <smvc-config>
     <!-- controller base package -->  
-    <controller-package base-package="com.mvc.controller" />
+    <controller-package>com.mvc.controller</controller-package>
   <!-- 启动Spring MVC的注解功能，完成请求和注解POJO的映射 -->  
 <!--       <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />  
      

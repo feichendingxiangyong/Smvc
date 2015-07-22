@@ -12,5 +12,24 @@ package com.smvc.context;
  *
  */
 public class ApplicationContext {
+    /**
+     * user's controller package that need to scan.
+     */
+    private String scanPackage;
+
+    public String getScanPackage() {
+        return scanPackage;
+    }
+
+    public void setScanPackage(String scanPackage) {
+        this.scanPackage = scanPackage;
+    }
+
+    @Override
+    public String toString() {
+        return "ApplicationContext [scanPackage=" + scanPackage + "]";
+    }
+    
+    
     
 }

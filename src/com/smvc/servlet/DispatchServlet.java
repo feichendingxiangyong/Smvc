@@ -3,7 +3,6 @@ package com.smvc.servlet;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -14,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
+import com.smvc.context.ApplicationContext;
+import com.smvc.context.ContextFactory;
 import com.smvc.exception.BeanInstantiationException;
 import com.smvc.handler.ClassMappingInfo;
 import com.smvc.handler.HandlerManager;
@@ -21,6 +22,7 @@ import com.smvc.handler.HandlerMethodManager;
 import com.smvc.model.ParamModel;
 import com.smvc.test.TestController;
 import com.smvc.util.BeanUtil;
+import com.smvc.util.ClassUtil;
 import com.smvc.util.RequestUtil;
 
 /**
@@ -32,8 +34,7 @@ public class DispatchServlet extends HttpServlet {
     private static final String preffix = "/WEB-INF/jsp/";
     private static final String suffix = ".jsp";
     
-    private static final String METHOD_REQUEST_MAPPING_KEY = "method";
-    private static final String METHOD_REQUEST_MAPPING_VALUE = "test";
+    private static ApplicationContext context;
 
     /**
      * URL 2 Controller bean mapping
@@ -57,11 +58,23 @@ public class DispatchServlet extends HttpServlet {
         super.init();
 
         try {
-            // init all mapping
-            //url2BeanMapping.put("/testController.do", TestController.class);
+            //init context 
+            context = ContextFactory.getApplicationContext();
+            if (context == null)
+            {
+                logger.error("Failed to load Application context.Failed to startup.");
+                return;
+            }
             
-            HandlerManager.getInstance().registHandler(TestController.class);
-
+            //init all user controller
+            //get all controller class
+            Set<Class<?>> classes = ClassUtil.getClasses(context.getScanPackage());
+            for (Class clazz : classes)
+            {
+                HandlerManager.getInstance().registHandler(clazz);
+            
+            }
+            ContextFactory.getApplicationContext();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
