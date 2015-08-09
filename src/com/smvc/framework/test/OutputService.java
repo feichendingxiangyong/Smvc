@@ -1,7 +1,7 @@
 package com.smvc.framework.test;
 
 /**
- * @author yihua.huang@dianping.com
+ * @author  Big Martin
  */
 public interface OutputService {
     void output(String text);

@@ -1,7 +1,7 @@
 package com.smvc.framework.aop;
 
 /**
- * @author yihua.huang@dianping.com
+ * @author Big Martin
  */
 public abstract class AbstractAopProxy implements AopProxy {
 

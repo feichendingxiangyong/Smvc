@@ -15,7 +15,15 @@ import com.smvc.framework.ioc.IocManager;
  * @author Big Martin
  *
  */
-public class TestIocManager {
+public class IocManagerTest {
+
+    @Test
+    public void testNotRegistBean()
+    {
+        OutputService outputService = IocManager.getManager().getBean(OutputServiceImpl.class);
+        Assert.assertNull(outputService);
+    }
+    
     @Test
     public void testRegisterBean()
     {

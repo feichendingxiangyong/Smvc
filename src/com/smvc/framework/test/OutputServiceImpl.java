@@ -1,8 +1,11 @@
 package com.smvc.framework.test;
 
+import com.smvc.framework.ioc.annotation.Bean;
+
 /**
- * @author yihua.huang@dianping.com
+ * @author Big Martin
  */
+@Bean
 public class OutputServiceImpl implements OutputService {
 
     @Override

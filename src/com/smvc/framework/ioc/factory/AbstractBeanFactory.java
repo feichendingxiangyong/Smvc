@@ -32,18 +32,9 @@ public abstract class AbstractBeanFactory implements IBeanFactory {
     public Object getBean(String name) {
         BeanDefinition beanDefinition = beanDefinitions.get(name);
 
-        // if not exist, create a default class instance
+        // if not exist, then return
         if (beanDefinition == null) {
-            BeanDefinition definition;
-            try {
-                definition = new BeanDefinition(Class.forName(name), null);
-                registBean(name, definition);
-                beanDefinition = beanDefinitions.get(name);
-            } catch (ClassNotFoundException e) {
-                logger.warn("Cannot find class [" + name +"], please check it.", e);
-                return null;
-            }
-            
+            return null;
         }
 
         try {

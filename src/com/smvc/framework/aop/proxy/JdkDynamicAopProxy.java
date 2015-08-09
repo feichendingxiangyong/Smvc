@@ -1,20 +1,18 @@
 package com.smvc.framework.aop.proxy;
 
-import org.aopalliance.intercept.MethodInterceptor;
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
 
 import com.smvc.framework.aop.AbstractAopProxy;
 import com.smvc.framework.aop.AdvisedSupport;
 import com.smvc.framework.aop.ReflectiveMethodInvocation;
 import com.smvc.framework.aop.advice.BaseAdvice;
 
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.Method;
-import java.lang.reflect.Proxy;
-
 /**
  * 基于jdk的动态代理
  * 
- * @author yihua.huang@dianping.com
+ * @author Big Martin
  */
 public class JdkDynamicAopProxy extends AbstractAopProxy implements InvocationHandler {
 

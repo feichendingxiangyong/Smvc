@@ -16,12 +16,11 @@ import com.smvc.framework.ioc.bean.PropertyValue;
 import com.smvc.framework.ioc.bean.PropertyValues;
 import com.smvc.framework.ioc.factory.AutoPackBeanFactory;
 import com.smvc.framework.ioc.factory.IBeanFactory;
-import com.smvc.framework.test.HelloWorldServiceImpl;
 import com.smvc.framework.util.AnnotationUtil;
 import com.smvc.framework.util.StringUtil;
 
 /**
- * To load ioc configuration.
+ * A IocManager can handle annotations IOC related to load IOC configuration.
  * @author Big Martin
  * 
  */
@@ -32,11 +31,17 @@ public class IocManager {
     
     private static IBeanFactory factory = AutoPackBeanFactory.getFactory();
     /**
-     * Register a bean to ioc contrainner
+     * Register a bean to ioc container
      * @param clazz
      */
     public void registBean(Class<?> clazz)
     {   
+        //if have been registered
+        if (getBean(clazz) != null)
+        {
+            return;
+        }
+        
         //find @controller annotation
         Bean bean = AnnotationUtil.findAnnotation(clazz, Bean.class);
         
@@ -60,6 +65,7 @@ public class IocManager {
                     if (!StringUtil.isEmpty(injectValue)) {
                         properties.addPropertyValue(new PropertyValue(field.getName(), injectValue));
                     } else if (injectClazz != Inject.class) {
+                        registBean(injectClazz);
                         properties.addPropertyValue(
                                 new PropertyValue(field.getName(), new BeanReference(injectClazz.getName())));
                     }

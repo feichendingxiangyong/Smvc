@@ -18,6 +18,7 @@ import org.apache.log4j.Logger;
  */
 public abstract class BaseAdvice implements MethodInterceptor {
     static Logger logger = Logger.getLogger(BaseAdvice.class);
+    
     @Override
     public Object invoke(MethodInvocation methodInvocation) throws Throwable {
         //get all useful message

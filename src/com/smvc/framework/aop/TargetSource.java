@@ -2,7 +2,7 @@ package com.smvc.framework.aop;
 
 /**
  * 被代理的对象
- * @author yihua.huang@dianping.com
+ * @author Big Martin
  */
 public class TargetSource {
 

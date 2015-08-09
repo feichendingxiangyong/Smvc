@@ -2,7 +2,7 @@ package com.smvc.framework.aop;
 
 /**
  * AOP代理
- * @author yihua.huang@dianping.com
+ * @author Big Martin
  */
 public interface AopProxy {
 

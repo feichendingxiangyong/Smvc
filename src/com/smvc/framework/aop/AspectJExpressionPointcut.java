@@ -10,7 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * @author yihua.huang@dianping.com
+ * @author Big Martin
  */
 public class AspectJExpressionPointcut implements Pointcut, ClassFilter, MethodMatcher {
 

@@ -6,7 +6,7 @@ import java.lang.reflect.AccessibleObject;
 import java.lang.reflect.Method;
 
 /**
- * @author yihua.huang@dianping.com
+ * @author Big Martin
  */
 public class ReflectiveMethodInvocation implements MethodInvocation {
 

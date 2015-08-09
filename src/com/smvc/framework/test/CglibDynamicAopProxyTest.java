@@ -5,12 +5,12 @@ import org.junit.Test;
 import com.smvc.framework.aop.AdvisedSupport;
 import com.smvc.framework.aop.AspectJExpressionPointcut;
 import com.smvc.framework.aop.TargetSource;
-import com.smvc.framework.aop.proxy.JdkDynamicAopProxy;
+import com.smvc.framework.aop.proxy.CglibDynamicAopProxy;
 
 /**
  * @author yihua.huang@dianping.com
  */
-public class JdkDynamicAopProxyTest {
+public class CglibDynamicAopProxyTest {
     @Test
 	public void testInterceptor() throws Exception {
 		// --------- helloWorldService without AOP
@@ -33,7 +33,7 @@ public class JdkDynamicAopProxyTest {
 		advisedSupport.setMethodMatcher(matcher);
 
 		// 3. 创建代理(Proxy)
-		JdkDynamicAopProxy jdkDynamicAopProxy = new JdkDynamicAopProxy(advisedSupport);
+		CglibDynamicAopProxy jdkDynamicAopProxy = new CglibDynamicAopProxy(advisedSupport);
 		HelloWorldService helloWorldServiceProxy = (HelloWorldService) jdkDynamicAopProxy.getProxy();
 
 		// 4. 基于AOP的调用

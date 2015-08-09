@@ -3,7 +3,7 @@ package com.smvc.framework.aop;
 import java.lang.reflect.Method;
 
 /**
- * @author yihua.huang@dianping.com
+ * @author Big Martin
  */
 public interface MethodMatcher {
 

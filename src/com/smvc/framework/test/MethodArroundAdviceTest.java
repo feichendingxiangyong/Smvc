@@ -4,7 +4,7 @@ import org.aopalliance.intercept.MethodInvocation;
 
 import com.smvc.framework.aop.advice.MethodArroundAdvice;
 
-public class TimerAdvice extends MethodArroundAdvice{
+public class MethodArroundAdviceTest extends MethodArroundAdvice{
 
     @Override
     protected Object doArround(MethodInvocation methodInvocation) throws Throwable{
