@@ -1,4 +1,4 @@
-# Smvc :a mvc project of java. Contains : mvc, ioc, aop, orm. 
+# Smvc :a mvc project of java. Contains : mvc, ioc, aop, orm, cache(to do function). 
 
 # Why i need to do this?
 1. When i developing a project, i need to know spring, hibernate, mybatis... Too much projects i need to know.
