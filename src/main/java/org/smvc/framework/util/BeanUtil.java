@@ -2,7 +2,6 @@ package org.smvc.framework.util;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.lang.reflect.Parameter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -110,37 +109,37 @@ public class BeanUtil {
 	    ParamModel paramModel = new ParamModel();
 	    
 	    // get all param types
-	    Parameter[] params = method.getParameters();
+	    Class<?>[] paramTypes = method.getParameterTypes();
 	    
 	    String[] paramNames = MethodParamNameVisitor.getMethodParamNames(method);
 	    
-	    Object[] objs = new Object[params.length];
+	    Object[] objs = new Object[paramTypes.length];
 	    int resultMapIndex = ParamModel.NO_RESULT_MAP;
 	    
 	    //iterate all types
-	    for (int i = 0; i < params.length; i ++)
+	    for (int i = 0; i < paramTypes.length; i ++)
 	    {
 	        // if String or something basic object type
-	        if (OTHER_OBJECT_TYPE_LIST.contains(params[i].getType().getName()))
+	        if (OTHER_OBJECT_TYPE_LIST.contains(paramTypes[i].getName()))
 	        {
 	            objs[i] = request.getParameter(paramNames[i]);
 	        }
 	        
 	        // if map type , means results
-	        else if (RESULT_TYPE.equals(params[i].getType().getName()))
+	        else if (RESULT_TYPE.equals(paramTypes[i].getName()))
 	        {
 	            objs[i] = new HashMap();
 	            resultMapIndex = i;
 	        }
 	        
 	        // if user wanna get http servlet request
-	        else if (REQUEST_TYPE.equals(params[i].getType().getName()))
+	        else if (REQUEST_TYPE.equals(paramTypes[i].getName()))
 	        {
 	            objs[i] = request;
 	        }
 	        
 	        // if user wanna get http servlet response
-	        else if (RESPONSE_TYPE.equals(params[i].getType().getName()))
+	        else if (RESPONSE_TYPE.equals(paramTypes[i].getName()))
 	        {
 	            objs[i] = response;
 	        }
@@ -148,7 +147,7 @@ public class BeanUtil {
 	        // other user defined type
 	        else
 	        {
-	            objs[i] = setUserModel(params[i], request);
+	            objs[i] = setUserModel(paramTypes[i], request);
 	        }
 	    }
 	    
@@ -158,13 +157,13 @@ public class BeanUtil {
 	    return paramModel;
 	}
 
-    private static Object setUserModel(Parameter param, HttpServletRequest request) {
+    private static Object setUserModel(Class<?> paramType, HttpServletRequest request) {
         try
         {
-            Object userModel = instantiate(param.getType());
+            Object userModel = instantiate(paramType);
             
             //instant object
-            Field[] fields = getClassFieldNames(param.getType());
+            Field[] fields = getClassFieldNames(paramType);
             
             String fieldName, setMethodName;
             Object fieldValue;
@@ -178,7 +177,7 @@ public class BeanUtil {
                 
                 try {
                     // get setmethod
-                    setMethod = param.getType().getMethod(setMethodName, field.getType());
+                    setMethod = paramType.getMethod(setMethodName, field.getType());
                 } catch (NoSuchMethodException ex) {
                     // can't get setmethod then continue.
                     continue;
@@ -193,7 +192,7 @@ public class BeanUtil {
                 {
                     StringBuilder sb = new StringBuilder();
                     sb.append("Can't invoke method [").append(setMethodName)
-                      .append("] of class[").append(param.getType().getName()).append("].");
+                      .append("] of class[").append(paramType.getName()).append("].");
                     logger.warn(sb.toString(), ex);
                 }
             }
@@ -204,7 +203,7 @@ public class BeanUtil {
         {
             if (logger.isDebugEnabled())
             {
-                logger.debug("Error happened when setting fields of class [" + param.getType().getName() + "].", e);
+                logger.debug("Error happened when setting fields of class [" + paramType.getName() + "].", e);
             }
         }
         

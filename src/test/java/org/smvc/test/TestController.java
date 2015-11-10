@@ -1,4 +1,4 @@
-package org.smv.test;
+package org.smvc.test;
 
 import java.util.Map;
 

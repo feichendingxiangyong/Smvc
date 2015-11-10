@@ -1,4 +1,4 @@
-package org.smv.test.aop;
+package org.smvc.test.aop;
 
 import org.junit.Test;
 import org.smvc.framework.aop.ProxyFactory;

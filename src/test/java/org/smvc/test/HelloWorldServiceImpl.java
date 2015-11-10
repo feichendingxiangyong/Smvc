@@ -1,8 +1,5 @@
-package org.smv.test;
+package org.smvc.test;
 
-/**
- * @author yihua.huang@dianping.com
- */
 public class HelloWorldServiceImpl implements HelloWorldService {
 
     private String text;

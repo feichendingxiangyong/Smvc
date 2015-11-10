@@ -1,7 +1,7 @@
 /**
  * User model for test only
  */
-package org.smv.test;
+package org.smvc.test;
 
 /**
  * @author Big Martin

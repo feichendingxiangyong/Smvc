@@ -1,4 +1,4 @@
-package org.smv.test.aop;
+package org.smvc.test.aop;
 
 import org.smvc.framework.aop.Invocation;
 import org.smvc.framework.aop.interceptor.Interceptor;

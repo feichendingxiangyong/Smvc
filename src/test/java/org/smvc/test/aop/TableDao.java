@@ -2,7 +2,7 @@
  * @author Big Martin
  *
  */
-package org.smv.test.aop;
+package org.smvc.test.aop;
 
 import org.smvc.framework.aop.annotation.Before;
 import org.smvc.framework.aop.annotation.Clear;

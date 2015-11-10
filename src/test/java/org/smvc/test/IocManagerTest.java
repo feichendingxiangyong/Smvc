@@ -4,7 +4,7 @@
  * @author dingxiangyong
  * @comment 
  */
-package org.smv.test;
+package org.smvc.test;
 
 import org.junit.Assert;
 import org.junit.Test;
